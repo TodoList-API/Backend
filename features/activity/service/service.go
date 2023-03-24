@@ -32,6 +32,14 @@ func (as *activityService) Create(newActivity activity.Core) (activity.Core, err
 }
 
 func (as *activityService) Update(activityID uint, updatedActivity activity.Core) (activity.Core, error) {
+
+	_, err := as.qry.GetActivity(activityID)
+
+	if err != nil {
+		return activity.Core{}, err
+
+	}
+
 	res, err := as.qry.Update(activityID, updatedActivity)
 
 	if err != nil {
@@ -53,6 +61,7 @@ func (as *activityService) ListActivity() ([]activity.Core, error) {
 
 }
 func (as *activityService) GetActivity(activityID uint) (activity.Core, error) {
+
 	res, err := as.qry.GetActivity(activityID)
 
 	if err != nil {
