@@ -2,6 +2,7 @@ package service
 
 import (
 	"TodoApp/features/activity"
+	"errors"
 )
 
 type activityService struct {
@@ -15,6 +16,11 @@ func New(ad activity.ActivityData) activity.ActivityService {
 }
 
 func (as *activityService) Create(newActivity activity.Core) (activity.Core, error) {
+
+	if newActivity.Title == "" {
+		return activity.Core{}, errors.New("title cannot be null")
+	}
+
 	res, err := as.qry.Create(newActivity)
 
 	if err != nil {
