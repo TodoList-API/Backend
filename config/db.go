@@ -2,6 +2,7 @@ package config
 
 import (
 	_activity "TodoApp/features/activity/data"
+	_todos "TodoApp/features/todos/data"
 	"fmt"
 	"log"
 
@@ -23,4 +24,5 @@ func InitDB(ac AppConfig) *gorm.DB {
 
 func Migrate(db *gorm.DB) {
 	db.AutoMigrate(_activity.Activity{})
+	db.AutoMigrate(_todos.Todos{})
 }
