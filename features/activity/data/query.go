@@ -32,7 +32,7 @@ func (ad *activityData) Create(newActivity activity.Core) (activity.Core, error)
 func (ad *activityData) Update(activityID uint, updatedActivity activity.Core) (activity.Core, error) {
 	data := CoreToData(updatedActivity)
 
-	qry := ad.db.Where("id = ?", activityID).Updates(&data)
+	qry := ad.db.Where("id = ?", activityID).Updates(&data).Find(&data)
 
 	if qry.RowsAffected <= 0 {
 		return activity.Core{}, errors.New("data not found")

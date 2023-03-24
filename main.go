@@ -31,7 +31,7 @@ func main() {
 	e.POST("/activity-groups", activityHandler.Create())
 	e.PATCH("/activity-groups/:activity_id", activityHandler.Update())
 	e.GET("/activity-groups", activityHandler.ListActivity())
-	e.POST("/activity-groups/:activity_id", activityHandler.GetActivity())
+	e.GET("/activity-groups/:activity_id", activityHandler.GetActivity())
 	e.DELETE("/activity-groups/:activity_id", activityHandler.Delete())
 
 	if err := e.Start(":8000"); err != nil {

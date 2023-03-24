@@ -6,21 +6,14 @@ import (
 )
 
 func PrintSuccessReponse(code int, message string, data ...interface{}) (int, interface{}) {
-	resp := map[string]interface{}{}
-	if message != "" {
-		resp["status"] = "Success"
-		resp["message"] = "Success"
-	}
-	switch len(data) {
-
-	case 1:
-		resp["data"] = data[0]
-	case 2:
-		resp["token"] = data[1].(string)
-		resp["data"] = data[0]
+	resp := map[string]interface{}{
+		"status":  "Success",
+		"message": "Success",
+		"data":    data,
 	}
 
 	return code, resp
+
 }
 
 func PrintErrorResponse(msg string) (int, interface{}) {
