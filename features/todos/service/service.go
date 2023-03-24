@@ -53,9 +53,9 @@ func (ts *todoService) Update(todoID uint, updatedTodo todos.Core) (todos.Core, 
 
 	return res, nil
 }
-func (ts *todoService) ListTodo() ([]todos.Core, error) {
+func (ts *todoService) ListTodo(queryParam uint) ([]todos.Core, error) {
 
-	res, err := ts.qry.ListTodo()
+	res, err := ts.qry.ListTodo(queryParam)
 
 	if err != nil {
 		return []todos.Core{}, err
@@ -64,6 +64,7 @@ func (ts *todoService) ListTodo() ([]todos.Core, error) {
 	return res, nil
 
 }
+
 func (ts *todoService) GetTodo(todoID uint) (todos.Core, error) {
 
 	res, err := ts.qry.GetTodo(todoID)

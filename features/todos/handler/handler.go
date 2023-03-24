@@ -64,7 +64,9 @@ func (th *todoHandler) Update() echo.HandlerFunc {
 
 func (th *todoHandler) ListTodo() echo.HandlerFunc {
 	return func(c echo.Context) error {
-		res, err := th.srv.ListTodo()
+		query, _ := strconv.Atoi(c.QueryParam("activity_group_id"))
+
+		res, err := th.srv.ListTodo(uint(query))
 		if err != nil {
 			return c.JSON(helper.PrintErrorResponse(err.Error()))
 		}

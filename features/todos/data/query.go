@@ -45,14 +45,22 @@ func (td *todoData) Update(todoID uint, updatedTodo todos.Core) (todos.Core, err
 
 	return DataToCore(data), nil
 }
-func (td *todoData) ListTodo() ([]todos.Core, error) {
+func (td *todoData) ListTodo(queryParam uint) ([]todos.Core, error) {
 	listTodo := []Todos{}
 
-	err := td.db.Find(&listTodo).Error
+	if queryParam <= 0 {
+		err := td.db.Find(&listTodo).Error
 
-	if err != nil {
-		return []todos.Core{}, err
+		if err != nil {
+			return []todos.Core{}, err
 
+		}
+	} else {
+		err := td.db.Where("activity_group_id = ?", queryParam).Find(&listTodo).Error
+
+		if err != nil {
+			return []todos.Core{}, err
+		}
 	}
 
 	return ListDataToCore(listTodo), nil

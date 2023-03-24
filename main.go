@@ -48,7 +48,7 @@ func main() {
 	e.GET("/todo-items/:todo_id", todoHandler.GetTodo())
 	e.DELETE("/todo-items/:todo_id", todoHandler.Delete())
 
-	if err := e.Start(":8000"); err != nil {
+	if err := e.Start(":3030"); err != nil {
 		log.Println(err.Error())
 	}
 
