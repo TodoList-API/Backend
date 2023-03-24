@@ -3,6 +3,7 @@ package data
 import (
 	"TodoApp/features/activity"
 	"errors"
+	"fmt"
 
 	"gorm.io/gorm"
 )
@@ -59,12 +60,14 @@ func (ad *activityData) ListActivity() ([]activity.Core, error) {
 func (ad *activityData) GetActivity(activityID uint) (activity.Core, error) {
 	myActivity := Activity{}
 
-	err := ad.db.Where("id = ?", activityID).Find(&myActivity).Error
+	qry := ad.db.Where("id = ?", activityID).Find(&myActivity)
 
-	if err != nil {
+	if err := qry.Error; err != nil {
 		return activity.Core{}, err
+	} else if qry.RowsAffected <= 0 {
+		msg := fmt.Sprintf("Activity with ID %d Not Found", activityID)
+		return activity.Core{}, errors.New(msg)
 	}
-
 	return DataToCore(myActivity), nil
 }
 func (ad *activityData) Delete(activityID uint) error {

@@ -25,7 +25,6 @@ func PrintErrorResponse(msg string) (int, interface{}) {
 	if msg != "" {
 		resp["message"] = msg
 	}
-
 	switch true {
 	case strings.Contains(msg, "server"):
 		code = http.StatusInternalServerError
@@ -34,8 +33,9 @@ func PrintErrorResponse(msg string) (int, interface{}) {
 	case strings.Contains(msg, "null"):
 		code = http.StatusBadRequest
 		resp["status"] = "Bad Request"
-	case strings.Contains(msg, "not found"):
+	case strings.Contains(msg, "Not Found"):
 		code = http.StatusNotFound
+		resp["status"] = "Not Found"
 	case strings.Contains(msg, "input"):
 		code = http.StatusBadRequest
 	case strings.Contains(msg, "exist"):
