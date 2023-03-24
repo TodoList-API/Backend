@@ -23,24 +23,24 @@ func InitConfig() *AppConfig {
 func ReadEnv() *AppConfig {
 	app := AppConfig{}
 	isRead := true
-	if val, found := os.LookupEnv("DBUSER"); found {
+	if val, found := os.LookupEnv("MYSQL_USER"); found {
 		app.MYSQL_DBUSER = val
 		isRead = false
 	}
-	if val, found := os.LookupEnv("DBPASS"); found {
+	if val, found := os.LookupEnv("MYSQL_PASSWORD"); found {
 		app.MYSQL_DBPASS = val
 		isRead = false
 	}
-	if val, found := os.LookupEnv("DBHOST"); found {
+	if val, found := os.LookupEnv("MYSQL_HOST"); found {
 		app.MYSQL_DBHOST = val
 		isRead = false
 	}
-	if val, found := os.LookupEnv("DBPORT"); found {
+	if val, found := os.LookupEnv("MYSQL_PORT"); found {
 		cnv, _ := strconv.Atoi(val)
 		app.MYSQL_DBPORT = cnv
 		isRead = false
 	}
-	if val, found := os.LookupEnv("DBNAME"); found {
+	if val, found := os.LookupEnv("MYSQL_DBNAME"); found {
 		app.MYSQL_DBNAME = val
 		isRead = false
 	}
