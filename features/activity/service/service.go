@@ -10,7 +10,7 @@ type activityService struct {
 
 func New(qry activity.ActivityData) activity.ActivityService {
 	return &activity.ActivityService{
-		qry: ad,
+		qry: qry,
 	}
 }
 
@@ -26,7 +26,14 @@ func (as *activityService) Create(newActivity activity.Core) (activity.Core, err
 }
 
 func (as *activityService) Update(activityID uint, updatedActivity activity.Core) (activity.Core, error) {
-	return activity.Core{}, nil
+	res, err := as.qry.Update(activityID, updatedActivity)
+
+	if err != nil {
+		return activity.Core{}, err
+
+	}
+
+	return res, nil
 }
 func (as *activityService) ListActivity() ([]activity.Core, error) {
 	return []activity.Core{}, nil
