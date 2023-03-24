@@ -40,6 +40,10 @@ func (as *activityService) Update(activityID uint, updatedActivity activity.Core
 
 	}
 
+	if updatedActivity.Title == "" {
+		return activity.Core{}, errors.New("title cannot be null")
+	}
+
 	res, err := as.qry.Update(activityID, updatedActivity)
 
 	if err != nil {
