@@ -23,24 +23,24 @@ func InitConfig() *AppConfig {
 func ReadEnv() *AppConfig {
 	app := AppConfig{}
 	isRead := true
-	if val, found := os.LookupEnv("MYSQL_DBUSER"); found {
+	if val, found := os.LookupEnv("DBUSER"); found {
 		app.MYSQL_DBUSER = val
 		isRead = false
 	}
-	if val, found := os.LookupEnv("MYSQL_DBPASS"); found {
+	if val, found := os.LookupEnv("DBPASS"); found {
 		app.MYSQL_DBPASS = val
 		isRead = false
 	}
-	if val, found := os.LookupEnv("MYSQL_DBHOST"); found {
+	if val, found := os.LookupEnv("DBHOST"); found {
 		app.MYSQL_DBHOST = val
 		isRead = false
 	}
-	if val, found := os.LookupEnv("MYSQL_DBPORT"); found {
+	if val, found := os.LookupEnv("DBPORT"); found {
 		cnv, _ := strconv.Atoi(val)
 		app.MYSQL_DBPORT = cnv
 		isRead = false
 	}
-	if val, found := os.LookupEnv("MYSQL_DBNAME"); found {
+	if val, found := os.LookupEnv("DBNAME"); found {
 		app.MYSQL_DBNAME = val
 		isRead = false
 	}
@@ -52,10 +52,10 @@ func ReadEnv() *AppConfig {
 			return nil
 		}
 
-		app.MYSQL_DBUSER = os.Getenv("MYSQL_DBUSER")
-		app.MYSQL_DBPASS = os.Getenv("MYSQL_DBPASS")
-		app.MYSQL_DBHOST = os.Getenv("MYSQL_DBHOST")
-		readData := os.Getenv("MYSQL_DBPORT")
+		app.MYSQL_DBUSER = os.Getenv("MYSQL_USER")
+		app.MYSQL_DBPASS = os.Getenv("MYSQL_PASSWORD")
+		app.MYSQL_DBHOST = os.Getenv("MYSQL_HOST")
+		readData := os.Getenv("MYSQL_PORT")
 		app.MYSQL_DBPORT, err = strconv.Atoi(readData)
 		if err != nil {
 			fmt.Println("Error saat convert MYSQL_DBPORT", err.Error())

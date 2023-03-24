@@ -6,11 +6,11 @@ import (
 )
 
 type ActivityResponse struct {
-	ID        uint
-	Title     string
-	Email     string
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	ID        uint      `json:"id" form:"id"`
+	Title     string    `json:"title" form:"title"`
+	Email     string    `json:"email" form:"email"`
+	CreatedAt time.Time `json:"createdAt" form:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt" form:"updatedAt"`
 }
 
 func ToResponse(core activity.Core) ActivityResponse {
