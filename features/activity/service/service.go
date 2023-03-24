@@ -36,7 +36,15 @@ func (as *activityService) Update(activityID uint, updatedActivity activity.Core
 	return res, nil
 }
 func (as *activityService) ListActivity() ([]activity.Core, error) {
-	return []activity.Core{}, nil
+
+	res, err := as.qry.ListActivity()
+
+	if err != nil {
+		return []activity.Core{}, err
+	}
+
+	return res, nil
+
 }
 func (as *activityService) GetActivity(activityID uint) (activity.Core, error) {
 	return activity.Core{}, nil
