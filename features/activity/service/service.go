@@ -76,7 +76,14 @@ func (as *activityService) GetActivity(activityID uint) (activity.Core, error) {
 	return res, nil
 }
 func (as *activityService) Delete(activityID uint) error {
-	err := as.qry.Delete(activityID)
+
+	_, err := as.qry.GetActivity(activityID)
+
+	if err != nil {
+		return err
+
+	}
+	err = as.qry.Delete(activityID)
 
 	if err != nil {
 		return err
