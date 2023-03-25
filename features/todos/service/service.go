@@ -42,10 +42,6 @@ func (ts *todoService) Update(todoID uint, updatedTodo todos.Core) (todos.Core, 
 
 	}
 
-	if updatedTodo.Title == "" {
-		return todos.Core{}, errors.New("title cannot be null")
-	}
-
 	res, err := ts.qry.Update(todoID, updatedTodo)
 
 	if err != nil {
