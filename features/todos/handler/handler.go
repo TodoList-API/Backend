@@ -70,7 +70,7 @@ func (th *todoHandler) ListTodo() echo.HandlerFunc {
 		if err != nil {
 			return c.JSON(helper.PrintErrorResponse(err.Error()))
 		} else if len(res) == 0 {
-			return c.JSON(http.StatusOK, helper.PrintSuccessReponse("Success", "Success", struct{}{}))
+			return c.JSON(http.StatusOK, helper.PrintSuccessReponse("Success", "Success", []interface{}{}))
 		}
 		return c.JSON(http.StatusOK, helper.PrintSuccessReponse("Success", "Success", ToListResponse(res)))
 	}
