@@ -9,6 +9,7 @@ type TodoRequest struct {
 	ActivityGroupId uint   `json:"activity_group_id" form:"activity_group_id"`
 	IsActive        bool   `json:"is_active" form:"is_active"`
 	Priority        string `json:"priority" form:"priority"`
+	Status          string `json:"status" form:"status"`
 }
 
 func RequestToCore(request TodoRequest) todos.Core {

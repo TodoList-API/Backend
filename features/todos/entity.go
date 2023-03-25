@@ -12,6 +12,7 @@ type Core struct {
 	ActivityGroupId uint
 	IsActive        bool
 	Priority        string
+	Status          string
 	CreatedAt       time.Time
 	UpdatedAt       time.Time
 }

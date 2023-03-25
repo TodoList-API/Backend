@@ -12,6 +12,7 @@ type Todos struct {
 	ActivityGroupId uint
 	IsActive        bool   `gorm:"default:true"`
 	Priority        string `gorm:"default:very-high"`
+	Status          string
 }
 
 func DataToCore(data Todos) todos.Core {
