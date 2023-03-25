@@ -19,6 +19,8 @@ func (ts *todoService) Create(newTodo todos.Core) (todos.Core, error) {
 
 	if newTodo.Title == "" {
 		return todos.Core{}, errors.New("title cannot be null")
+	} else if newTodo.ActivityGroupId <= 0 {
+		return todos.Core{}, errors.New("activity_group_id cannot be null")
 	}
 
 	res, err := ts.qry.Create(newTodo)
