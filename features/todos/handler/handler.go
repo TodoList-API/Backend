@@ -69,8 +69,9 @@ func (th *todoHandler) ListTodo() echo.HandlerFunc {
 		res, err := th.srv.ListTodo(uint(query))
 		if err != nil {
 			return c.JSON(helper.PrintErrorResponse(err.Error()))
+		} else if len(res) == 0 {
+			return c.JSON(http.StatusOK, helper.PrintSuccessReponse("Success", "Success", struct{}{}))
 		}
-
 		return c.JSON(http.StatusOK, helper.PrintSuccessReponse("Success", "Success", ToListResponse(res)))
 	}
 }
