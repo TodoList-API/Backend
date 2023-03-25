@@ -29,7 +29,7 @@ type TodoService interface {
 	Update(todoID uint, updatedTodo Core) (Core, error)
 	ListTodo(queryParam uint) ([]Core, error)
 	GetTodo(todoID uint) (Core, error)
-	Delete(todoID uint) (Core, error)
+	Delete(todoID uint) error
 }
 
 type TodoData interface {
@@ -37,5 +37,5 @@ type TodoData interface {
 	Update(todoID uint, updatedTodo Core) (Core, error)
 	ListTodo(queryParam uint) ([]Core, error)
 	GetTodo(todoID uint) (Core, error)
-	Delete(todoID uint) (Core, error)
+	Delete(todoID uint) error
 }

@@ -102,10 +102,10 @@ func (th *todoHandler) Delete() echo.HandlerFunc {
 			})
 		}
 
-		res, err := th.srv.Delete(uint(todoID))
+		err = th.srv.Delete(uint(todoID))
 		if err != nil {
 			return c.JSON(helper.PrintErrorResponse(err.Error()))
 		}
-		return c.JSON(http.StatusOK, helper.PrintSuccessReponse("Success", "Success", ToResponse(res)))
+		return c.JSON(http.StatusOK, helper.DeleteReponse("Success", "Success"))
 	}
 }

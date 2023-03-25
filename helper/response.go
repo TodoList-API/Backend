@@ -25,6 +25,15 @@ func PrintSuccessReponse(status string, message string, data interface{}) Succes
 
 }
 
+func DeleteReponse(status string, message string) SuccessResponse {
+	return SuccessResponse{
+		Status:  status,
+		Message: message,
+		Data:    struct{}{},
+	}
+
+}
+
 func PrintErrorResponse(msg string) (int, ErrorResponse) {
 	resp := ErrorResponse{}
 	code := http.StatusInternalServerError

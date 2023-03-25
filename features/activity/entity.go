@@ -27,7 +27,7 @@ type ActivityService interface {
 	Update(activityID uint, updatedActivity Core) (Core, error)
 	ListActivity() ([]Core, error)
 	GetActivity(activityID uint) (Core, error)
-	Delete(activityID uint) (Core, error)
+	Delete(activityID uint) error
 }
 
 type ActivityData interface {
@@ -35,5 +35,5 @@ type ActivityData interface {
 	Update(activityID uint, updatedActivity Core) (Core, error)
 	ListActivity() ([]Core, error)
 	GetActivity(activityID uint) (Core, error)
-	Delete(activityID uint) (Core, error)
+	Delete(activityID uint) error
 }

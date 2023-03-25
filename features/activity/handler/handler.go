@@ -98,10 +98,10 @@ func (ah *activityHandler) Delete() echo.HandlerFunc {
 			})
 		}
 
-		res, err := ah.srv.Delete(uint(activityID))
+		err = ah.srv.Delete(uint(activityID))
 		if err != nil {
 			return c.JSON(helper.PrintErrorResponse(err.Error()))
 		}
-		return c.JSON(http.StatusOK, helper.PrintSuccessReponse("Success", "Success", ToResponse(res)))
+		return c.JSON(http.StatusOK, helper.DeleteReponse("Success", "Success"))
 	}
 }
