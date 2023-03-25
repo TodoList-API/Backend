@@ -33,7 +33,7 @@ func (th *todoHandler) Create() echo.HandlerFunc {
 			return c.JSON(helper.PrintErrorResponse(err.Error()))
 		}
 
-		return c.JSON(helper.PrintSuccessReponse(http.StatusCreated, "Success", ToResponse(res)))
+		return c.JSON(http.StatusCreated, helper.PrintSuccessReponse("Success", "Success", ToResponse(res)))
 	}
 }
 
@@ -58,7 +58,7 @@ func (th *todoHandler) Update() echo.HandlerFunc {
 			return c.JSON(helper.PrintErrorResponse(err.Error()))
 		}
 
-		return c.JSON(helper.PrintSuccessReponse(http.StatusOK, "Success", ToResponse(res)))
+		return c.JSON(http.StatusOK, helper.PrintSuccessReponse("Success", "Success", ToResponse(res)))
 	}
 }
 
@@ -71,7 +71,7 @@ func (th *todoHandler) ListTodo() echo.HandlerFunc {
 			return c.JSON(helper.PrintErrorResponse(err.Error()))
 		}
 
-		return c.JSON(helper.PrintSuccessReponse(http.StatusOK, "Success", ToListResponse(res)))
+		return c.JSON(http.StatusOK, helper.PrintSuccessReponse("Success", "Success", ToListResponse(res)))
 	}
 }
 
@@ -89,7 +89,7 @@ func (th *todoHandler) GetTodo() echo.HandlerFunc {
 			return c.JSON(helper.PrintErrorResponse(err.Error()))
 		}
 
-		return c.JSON(helper.PrintSuccessReponse(http.StatusOK, "Success", ToResponse(res)))
+		return c.JSON(http.StatusOK, helper.PrintSuccessReponse("Success", "Success", ToResponse(res)))
 	}
 }
 
@@ -102,10 +102,10 @@ func (th *todoHandler) Delete() echo.HandlerFunc {
 			})
 		}
 
-		err = th.srv.Delete(uint(todoID))
+		res, err := th.srv.Delete(uint(todoID))
 		if err != nil {
 			return c.JSON(helper.PrintErrorResponse(err.Error()))
 		}
-		return c.JSON(helper.PrintSuccessReponse(http.StatusOK, "Success"))
+		return c.JSON(http.StatusOK, helper.PrintSuccessReponse("Success", "Success", ToResponse(res)))
 	}
 }

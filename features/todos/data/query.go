@@ -78,15 +78,15 @@ func (td *todoData) GetTodo(todoID uint) (todos.Core, error) {
 	}
 	return DataToCore(myTodo), nil
 }
-func (td *todoData) Delete(todoID uint) error {
+func (td *todoData) Delete(todoID uint) (todos.Core, error) {
 	record := Todos{}
 
 	err := td.db.Where("id = ?", todoID).Delete(&record).Error
 
 	if err != nil {
-		return err
+		return todos.Core{}, err
 
 	}
 
-	return nil
+	return DataToCore(record), nil
 }

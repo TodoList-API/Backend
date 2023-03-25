@@ -70,15 +70,15 @@ func (ad *activityData) GetActivity(activityID uint) (activity.Core, error) {
 	}
 	return DataToCore(myActivity), nil
 }
-func (ad *activityData) Delete(activityID uint) error {
+func (ad *activityData) Delete(activityID uint) (activity.Core, error) {
 	record := Activity{}
 
 	err := ad.db.Where("id = ?", activityID).Delete(&record).Error
 
 	if err != nil {
-		return err
+		return activity.Core{}, err
 
 	}
 
-	return nil
+	return DataToCore(record), nil
 }

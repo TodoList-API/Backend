@@ -5,14 +5,14 @@ import (
 	"strings"
 )
 
-func PrintSuccessReponse(code int, message string, data ...interface{}) (int, interface{}) {
+func PrintSuccessReponse(status string, message string, data interface{}) map[string]interface{} {
 	resp := map[string]interface{}{
-		"status":  "Success",
-		"message": "Success",
+		"status":  status,
+		"message": message,
 		"data":    data,
 	}
 
-	return code, resp
+	return resp
 
 }
 

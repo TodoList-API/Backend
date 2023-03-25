@@ -33,7 +33,7 @@ func (ah *activityHandler) Create() echo.HandlerFunc {
 			return c.JSON(helper.PrintErrorResponse(err.Error()))
 		}
 
-		return c.JSON(helper.PrintSuccessReponse(http.StatusCreated, "Success", ToResponse(res)))
+		return c.JSON(http.StatusCreated, helper.PrintSuccessReponse("Success", "Success", ToResponse(res)))
 	}
 }
 
@@ -58,7 +58,7 @@ func (ah *activityHandler) Update() echo.HandlerFunc {
 			return c.JSON(helper.PrintErrorResponse(err.Error()))
 		}
 
-		return c.JSON(helper.PrintSuccessReponse(http.StatusOK, "Success", ToResponse(res)))
+		return c.JSON(http.StatusOK, helper.PrintSuccessReponse("Success", "Success", ToResponse(res)))
 	}
 }
 func (ah *activityHandler) ListActivity() echo.HandlerFunc {
@@ -68,7 +68,7 @@ func (ah *activityHandler) ListActivity() echo.HandlerFunc {
 			return c.JSON(helper.PrintErrorResponse(err.Error()))
 		}
 
-		return c.JSON(helper.PrintSuccessReponse(http.StatusOK, "Success", ToListResponse(res)))
+		return c.JSON(http.StatusOK, helper.PrintSuccessReponse("Success", "Success", ToListResponse(res)))
 	}
 }
 
@@ -86,7 +86,7 @@ func (ah *activityHandler) GetActivity() echo.HandlerFunc {
 			return c.JSON(helper.PrintErrorResponse(err.Error()))
 		}
 
-		return c.JSON(helper.PrintSuccessReponse(http.StatusOK, "Success", ToResponse(res)))
+		return c.JSON(http.StatusOK, helper.PrintSuccessReponse("Success", "Success", ToResponse(res)))
 	}
 }
 func (ah *activityHandler) Delete() echo.HandlerFunc {
@@ -98,10 +98,10 @@ func (ah *activityHandler) Delete() echo.HandlerFunc {
 			})
 		}
 
-		err = ah.srv.Delete(uint(activityID))
+		res, err := ah.srv.Delete(uint(activityID))
 		if err != nil {
 			return c.JSON(helper.PrintErrorResponse(err.Error()))
 		}
-		return c.JSON(helper.PrintSuccessReponse(http.StatusOK, "Success"))
+		return c.JSON(http.StatusOK, helper.PrintSuccessReponse("Success", "Success", ToResponse(res)))
 	}
 }

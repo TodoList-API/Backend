@@ -76,19 +76,19 @@ func (ts *todoService) GetTodo(todoID uint) (todos.Core, error) {
 
 	return res, nil
 }
-func (ts *todoService) Delete(todoID uint) error {
+func (ts *todoService) Delete(todoID uint) (todos.Core, error) {
 
 	_, err := ts.qry.GetTodo(todoID)
 
 	if err != nil {
-		return err
+		return todos.Core{}, err
 
 	}
-	err = ts.qry.Delete(todoID)
+	res, err := ts.qry.Delete(todoID)
 
 	if err != nil {
-		return err
+		return todos.Core{}, err
 
 	}
-	return nil
+	return res, nil
 }
