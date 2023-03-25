@@ -5,25 +5,31 @@ import (
 	"strings"
 )
 
-func PrintSuccessReponse(status string, message string, data interface{}) map[string]interface{} {
-	resp := map[string]interface{}{
-		"status":  status,
-		"message": message,
-		"data":    data,
-	}
+type SuccessResponse struct {
+	Status  string      `json:"status" form:"status"`
+	Message string      `json:"message" form:"message"`
+	Data    interface{} `json:"data" form:"data"`
+}
 
-	return resp
+type ErrorResponse struct {
+	Status  string `json:"status" form:"status"`
+	Message string `json:"message" form:"message"`
+}
+
+func PrintSuccessReponse(status string, message string, data interface{}) SuccessResponse {
+	return SuccessResponse{
+		Status:  status,
+		Message: message,
+		Data:    data,
+	}
 
 }
 
-func PrintErrorResponse(msg string) (int, interface{}) {
-	resp := map[string]interface{}{
-		"status":  "",
-		"message": "",
-	}
+func PrintErrorResponse(msg string) (int, ErrorResponse) {
+	resp := ErrorResponse{}
 	code := http.StatusInternalServerError
 	if msg != "" {
-		resp["message"] = msg
+		resp.Message = msg
 	}
 	switch true {
 	case strings.Contains(msg, "server"):
@@ -32,10 +38,10 @@ func PrintErrorResponse(msg string) (int, interface{}) {
 		code = http.StatusBadRequest
 	case strings.Contains(msg, "null"):
 		code = http.StatusBadRequest
-		resp["status"] = "Bad Request"
+		resp.Status = "Bad Request"
 	case strings.Contains(msg, "Not Found"):
 		code = http.StatusNotFound
-		resp["status"] = "Not Found"
+		resp.Status = "Not Found"
 	case strings.Contains(msg, "input"):
 		code = http.StatusBadRequest
 	case strings.Contains(msg, "exist"):
